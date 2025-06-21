@@ -3,7 +3,7 @@ import { useState } from "react";
 import {Input} from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+
 
 interface AuthFormProps{
     type: "login" | "signup"
@@ -16,7 +16,7 @@ export function AuthForm({type}:AuthFormProps) {
     
     const handleSubmit = (e:React.FormEvent) => {
         e.preventDefault()
-        console.log(username, email, password)
+        // console.log(username, email, password)
         // fileter username, email, password
         // call api
     }
