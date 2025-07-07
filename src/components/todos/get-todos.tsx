@@ -4,8 +4,6 @@ import {Checkbox} from "@/components/ui/checkbox"
 import {useState,useEffect} from "react"
 import axios from "axios"
 import { Input } from "../ui/input"
-import { on } from "events"
-import { set } from "mongoose"
 export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=>void}) {
     const [todos, setTodos] = useState([])
     const [editingId,setEditingId] = useState<string | null>(null)
@@ -18,8 +16,8 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
             if(res.status === 200){
                 setTodos(res.data.todos)
             }
-          }catch(err){
-            
+          }catch(err:any){
+            console
           }
         }
         fetchTodos()
@@ -42,8 +40,8 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
             )
             
             onRefresh()
-        }catch(err){
-            
+        }catch(err:any){
+            console.log(err)
         }
     }
 
@@ -55,8 +53,8 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
           data:{id}
         })
         onRefresh()
-      }catch(err){
-        
+      }catch(err:any){
+        console.log(err)
       }
     }
 
@@ -73,8 +71,8 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
         setEditingId(null)
         setEditedTitle("")
         onRefresh()
-      }catch(err){
-        
+      }catch(err:any){
+        console.log(err)
       }
     }
     

@@ -3,13 +3,15 @@ import { connectDB } from "@/lib/connection";
 import {User} from "@/lib/models/UserModel";
 import { signToken } from "@/lib/jwt";
 
+
 export async function POST(request: NextRequest) {
     try{
         await connectDB();
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "Error connecting to database" 
+            message: "Error connecting to database",
+            error:err
         });
     }
     const data = await request.json();

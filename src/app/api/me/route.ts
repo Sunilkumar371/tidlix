@@ -3,13 +3,15 @@ import { connectDB } from "@/lib/connection";
 import { User } from "@/lib/models/UserModel";
 import { verifyToken } from "@/lib/jwt";
 
+
 export async function GET(req:NextRequest){
     try{
         await connectDB();
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "Error connecting to database" 
+            message: "Error connecting to database",
+            error:err
         });
     }
     const token =  req.cookies.get("token")?.value
@@ -23,10 +25,11 @@ export async function GET(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "invalid token" 
+            message: "invalid token",
+            error:err
         });
     }
    const user = await User.findById(decoded.userId).select("-password")

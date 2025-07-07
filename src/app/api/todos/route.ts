@@ -1,16 +1,16 @@
 import { connectDB } from "@/lib/connection";
 import { verifyToken } from "@/lib/jwt";
 import { Todo } from "@/lib/models/TodoModel";
-import { cookies } from "next/headers";
 import { NextResponse,NextRequest } from "next/server";
 
 export async function GET(req:NextRequest){
     try{
         await connectDB();
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "Error connecting to database" 
+            message: "Error connecting to database" ,
+            error:err
         });
     }
     
@@ -25,10 +25,11 @@ export async function GET(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "invalid token" 
+            message: "invalid token",
+            error:err 
         });
     }
     
@@ -42,10 +43,11 @@ export async function GET(req:NextRequest){
 export async function POST(req:NextRequest){
     try{
         await connectDB();
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "Error connecting to database" 
+            message: "Error connecting to database",
+            error:err
         });
     }
     
@@ -60,10 +62,11 @@ export async function POST(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "invalid token" 
+            message: "invalid token",
+            error:err
         });
     }
     
@@ -92,10 +95,11 @@ export async function POST(req:NextRequest){
 export async function DELETE(req:NextRequest){
     try{
         await connectDB();
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "Error connecting to database" 
+            message: "Error connecting to database",
+            error:err 
         });
     }
     const token =  req.cookies.get("token")?.value
@@ -109,11 +113,13 @@ export async function DELETE(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "invalid token" 
+            message: "invalid token",
+            error:err
         });
+        
     }
     
     const data = await req.json()
@@ -140,10 +146,11 @@ export async function DELETE(req:NextRequest){
 export async function PUT(req:NextRequest){
     try{
         await connectDB();
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "Error connecting to database" 
+            message: "Error connecting to database",
+            error:err
         });
     }
     const token =  req.cookies.get("token")?.value
@@ -157,10 +164,11 @@ export async function PUT(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err){
+    }catch(err:any){
         return NextResponse.json({ 
             status:401,
-            message: "invalid token" 
+            message: "invalid token",
+            error:err
         });
     }
     
