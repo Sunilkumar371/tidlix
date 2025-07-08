@@ -1,45 +1,61 @@
-# Tidlix 🗒️
-Plan. Jot. Achieve\
+# Tidlix 🗒️  
+**Plan. Jot. Achieve.**  
 Tidlix is a clean and minimal productivity app to manage your **todos, notes, and journal entries** — all in one place.
 
 🛠️ Currently under development.
 
+---
+
 ## 🔧 Tech Stack
-- **Next.js 15 (App Router)**
-- **Tailwind CSS**
-- **ShadCN UI** 
-- **TypeScript**
 
+- [Next.js 15 (App Router)](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [ShadCN UI](https://ui.shadcn.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [MongoDB + Mongoose](https://mongoosejs.com/)
+- JWT Auth with cookies
 
-## Roadmap
+---
 
-Here's what’s coming soon:
+## 📌 Roadmap
 
-- ✅ Dark mode support
-- ⏳ Login / Signup UI 
-- ⏳ Todo list manager 
-- ⏳ Note-taking and journaling
-- ⏳ User accounts + auth
-- ⏳ Sync + persistence
+- ✅ Dark mode support  
+- 🔄 Login / Signup UI  
+- 🔄 Todo list manager  
+- ⏳ Notes & Journaling  
+- ⏳ User authentication + session  
+- ⏳ Data sync + persistence  
 
+---
 
 ## 💡 Why Tidlix?
 
-We switch between too many tools — Notion, Docs, random notes.  
-Tidlix aims to keep it **simple, fast, and personal.**
+We often juggle between too many tools — Notion, Docs, sticky notes, reminders.  
+**Tidlix brings simplicity back** with a focused space that feels personal and fast.
+
+---
 
 ## 🚀 Follow Along
 
-Building in public to stay consistent, get feedback, and stay honest.
+Building in public to stay consistent, gather feedback, and stay honest.
 
-- GitHub issues → [feature tracking](https://github.com/Sunilkumar371/tidlix/issues)
-- X → [@sunil_kumar_371](https://x.com/sunil_kumar_371)
-- Blog/Updates → Coming soon
+- 🛠 [GitHub Issues](https://github.com/Sunilkumar371/tidlix/issues) – Track features/bugs  
+- 🐦 [@sunil_kumar_371 on X](https://x.com/sunil_kumar_371) – Progress & updates  
+- 📝 Blog/Changelog – *Coming soon*
 
-## 🚀 Local Setup
+---
+
+## 🧑‍💻 Local Development
 
 ```bash
+# Clone the repo
 git clone https://github.com/Sunilkumar371/tidlix
+
+# Move into the project directory
 cd tidlix
+
+# Install dependencies
 npm install
+
+# Start the dev server
 npm run dev
