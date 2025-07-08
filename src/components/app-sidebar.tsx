@@ -151,9 +151,13 @@ const data = {
     },
   ],
 }
-
+interface User {
+  username:string,
+  email:string,
+  avatar:string
+}
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const [user, setUser] = useState<any>()
+  const [user, setUser] = useState<User>()
   useEffect(() => {
   axios.get("/api/me", { withCredentials: true }).then((res) => {
     if (res.data.success) {
@@ -161,7 +165,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     }
   })
 }, [])
-console.log(user)
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>

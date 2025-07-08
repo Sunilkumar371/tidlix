@@ -5,13 +5,13 @@ import axios from "axios"
 import { useState } from "react"
 import { GetTodos } from "@/components/todos/get-todos"
 export default function todos(){
-    const [title,setTitle] = useState("")
-    const [refreshKey,setRefreshKey] = useState(0)
+    const [title,setTitle] = useState<string>("")
+    const [refreshKey,setRefreshKey] = useState<number>(0)
     
     async function AddTodo(){
         try{
             if(!title.trim()) return
-            const res = await axios.post("/api/todos",{
+            await axios.post("/api/todos",{
                 title:title,
                 description:"",
                 isCompleted:false,
@@ -45,7 +45,7 @@ export default function todos(){
                 />
                 </div>
                 <div className="">
-                    <Button className="p-3 sm:p-6" onClick={AddTodo}>Add Todo</Button>
+                    <Button className="p-3 sm:p-6 cursor-pointer" onClick={AddTodo}>Add Todo</Button>
                 </div>
                 
             </div>

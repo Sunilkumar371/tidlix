@@ -4,6 +4,22 @@ import {Checkbox} from "@/components/ui/checkbox"
 import {useState,useEffect} from "react"
 import axios from "axios"
 import { Input } from "../ui/input"
+
+interface Todo {
+  _id: string;
+  title: string;
+  description: string;
+  isCompleted: boolean;
+  user: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+interface TodosResponse {
+  status: number;
+  todos: Todo[];
+}
 export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=>void}) {
     const [todos, setTodos] = useState([])
     const [editingId,setEditingId] = useState<string | null>(null)
@@ -31,9 +47,9 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
     }, [todos])
     
     async function handleToggle(title:string,isCompleted:boolean,id:string) {
-      alert("you clicked the todo toggle")
+      
         try{
-            const res = await axios.put("/api/todos",{
+            await axios.put("/api/todos",{
                 title:title,
                 isCompleted:!isCompleted,
                 id:id
@@ -53,7 +69,7 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
     async function handleDelete(id:string){
       
       try{
-        const res = await axios.delete('/api/todos',{
+        await axios.delete('/api/todos',{
           withCredentials:true,
           data:{id}
         })
@@ -89,7 +105,7 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
     return (
    
       <div className="space-y-2 mt-4">
-        {todos.map((todo:any) => (
+        {todos.map((todo:Todo) => (
           <div
             key={todo._id}
             className = "flex items-center justify-between  bg-muted p-2 rounded-xl sm:w-2/3 m-auto mb-2"
@@ -97,7 +113,7 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
             <div className="flex items-center gap-2 ">
               <Checkbox 
                 checked={todo.isCompleted} 
-                className="border-2"
+                className="border-2 cursor-pointer"
                 onCheckedChange={()=>{handleToggle(todo.title,todo.isCompleted,todo._id)}}
               />
               {editingId === todo._id ? (
@@ -128,12 +144,13 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
                   setEditedTitle(todo.title)
                 
               }}>
-                {editingId === todo._id ? <Check className="w-4 h-4" /> : <Pencil className="w-4 h-4" />}
+                {editingId === todo._id ? <Check className="w-4 h-4 cursor-pointer" /> : <Pencil className="w-4 h-4 cursor-pointer" />}
               </Button>
               <Button 
                 size="icon" 
                 variant="ghost" 
                 onClick={()=>handleDelete(todo._id)}
+                className="cursor-pointer"
               >
                 <Trash2 className="w-4 h-4" />
               </Button>

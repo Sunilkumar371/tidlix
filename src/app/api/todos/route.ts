@@ -149,7 +149,7 @@ export async function DELETE(req:NextRequest){
             message: "No data id found" 
         });
     }
-    const todo = await Todo.findOneAndDelete({
+    await Todo.findOneAndDelete({
         _id:data.id,
         user:decoded.userId
     })

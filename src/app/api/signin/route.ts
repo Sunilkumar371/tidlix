@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     
     const {email,password} = data
     
-    const user:any = await User.findOne({email})
+    const user = await User.findOne({email})
     
     if(!user || user === null){
         return NextResponse.json({ 
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
             message: "Invalid password" 
         });
     }
-    const token = signToken({userId:user._id.toString()})
+    const token = signToken({userId:user._id as string})
     if(token){
         
     }
