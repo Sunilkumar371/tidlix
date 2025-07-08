@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import axios from "axios"
 import { useState } from "react"
 import { GetTodos } from "@/components/todos/get-todos"
-export default function todos(){
+export default function Todos(){
     const [title,setTitle] = useState<string>("")
     const [refreshKey,setRefreshKey] = useState<number>(0)
     

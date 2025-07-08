@@ -16,10 +16,7 @@ interface Todo {
   __v: number;
 }
 
-interface TodosResponse {
-  status: number;
-  todos: Todo[];
-}
+
 export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=>void}) {
     const [todos, setTodos] = useState([])
     const [editingId,setEditingId] = useState<string | null>(null)

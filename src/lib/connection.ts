@@ -7,7 +7,14 @@ if (!MONGODB_URI) {
     );
 }
 
-const cached = (global as any).mongoose || {conn: null, promise: null};
+interface CachedConnection {
+    conn: typeof mongoose | null;
+    promise: Promise<typeof mongoose> | null;
+}
+declare global{
+    var mongoose: CachedConnection | undefined;
+}
+const cached: CachedConnection = global.mongoose || {conn: null, promise: null};
 export async function connectDB() {
     if(cached.conn) return cached.conn;
     if(!cached.promise) {
@@ -18,6 +25,6 @@ export async function connectDB() {
         
     }
     cached.conn = await cached.promise;
-    
+    global.mongoose = cached;
     return cached.conn;
 }
