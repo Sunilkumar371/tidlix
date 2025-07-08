@@ -10,6 +10,7 @@ export default function Home() {
         </h1>
         <p className="text-muted-foreground text-lg">
           A focused space for your todos, notes, and journals — all in one place. Built in public, launching soon.
+          You can manage your todos now
         </p>
         <p className="text-sm text-muted-foreground">
           Follow the journey on <a href="https://github.com/Sunilkumar371/tidlix/">GitHub</a> 
