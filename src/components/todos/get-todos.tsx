@@ -16,8 +16,10 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
             if(res.status === 200){
                 setTodos(res.data.todos)
             }
-          }catch(err:any){
-            console
+          }catch(err:unknown){
+            if (err instanceof Error) {
+            console.error(err.message);
+        }
           }
         }
         fetchTodos()
@@ -40,8 +42,11 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
             )
             
             onRefresh()
-        }catch(err:any){
-            console.log(err)
+        }catch(err:unknown){
+            if (err instanceof Error) {
+            console.error(err.message);
+        }
+            
         }
     }
 
@@ -53,8 +58,10 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
           data:{id}
         })
         onRefresh()
-      }catch(err:any){
-        console.log(err)
+      }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
       }
     }
 
@@ -71,9 +78,11 @@ export function GetTodos({refreshKey,onRefresh}:{refreshKey:number;onRefresh:()=
         setEditingId(null)
         setEditedTitle("")
         onRefresh()
-      }catch(err:any){
-        console.log(err)
-      }
+      }catch(err:unknown){
+              if (err instanceof Error) {
+            console.error(err.message);
+        }
+          }
     }
     
       

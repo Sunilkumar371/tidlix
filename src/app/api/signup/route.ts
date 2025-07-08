@@ -14,10 +14,14 @@ export  async function POST(request:NextRequest){
     const {username,email,password} = data
     try{
         await connectDB();
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({
             status:401,
-            message: "Error connecting to database"
+            message: "Error connecting to database",
+            error:err
         })
     }
     const user = await User.findOne({email})

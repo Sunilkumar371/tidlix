@@ -7,7 +7,10 @@ import { signToken } from "@/lib/jwt";
 export async function POST(request: NextRequest) {
     try{
         await connectDB();
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "Error connecting to database",

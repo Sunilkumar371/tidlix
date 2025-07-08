@@ -19,8 +19,10 @@ export default function todos(){
                 {withCredentials:true}
             )
             
-        }catch(err:any){
-            
+        }catch(err:unknown){
+            if (err instanceof Error) {
+            console.error(err.message);
+        }
         }finally{
             setTitle("")
             setRefreshKey(refreshKey + 1)

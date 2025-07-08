@@ -15,9 +15,11 @@ export function middleware(req:NextRequest){
     }
     try{
         if(token) verifyToken(token)
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.redirect(new URL("/signin",req.url))
-        console.log(err)
     }
     return
 }

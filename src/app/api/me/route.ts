@@ -2,12 +2,17 @@ import { NextRequest,NextResponse } from "next/server";
 import { connectDB } from "@/lib/connection";
 import { User } from "@/lib/models/UserModel";
 import { verifyToken } from "@/lib/jwt";
-
+import { JwtPayload } from "jsonwebtoken"
 
 export async function GET(req:NextRequest){
     try{
         await connectDB();
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error("Error:", err.message);
+        } else {
+            console.error("Unknown error", err);
+        }
         return NextResponse.json({ 
             status:401,
             message: "Error connecting to database",
@@ -22,10 +27,13 @@ export async function GET(req:NextRequest){
         });
     }
     
-    let decoded
+    let decoded: JwtPayload & { userId: string }
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "invalid token",

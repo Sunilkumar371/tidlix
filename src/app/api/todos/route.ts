@@ -6,7 +6,10 @@ import { NextResponse,NextRequest } from "next/server";
 export async function GET(req:NextRequest){
     try{
         await connectDB();
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "Error connecting to database" ,
@@ -25,7 +28,10 @@ export async function GET(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "invalid token",
@@ -43,7 +49,10 @@ export async function GET(req:NextRequest){
 export async function POST(req:NextRequest){
     try{
         await connectDB();
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "Error connecting to database",
@@ -62,7 +71,10 @@ export async function POST(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "invalid token",
@@ -95,7 +107,10 @@ export async function POST(req:NextRequest){
 export async function DELETE(req:NextRequest){
     try{
         await connectDB();
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "Error connecting to database",
@@ -113,7 +128,10 @@ export async function DELETE(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "invalid token",
@@ -146,7 +164,10 @@ export async function DELETE(req:NextRequest){
 export async function PUT(req:NextRequest){
     try{
         await connectDB();
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "Error connecting to database",
@@ -164,7 +185,10 @@ export async function PUT(req:NextRequest){
     let decoded
     try{
         decoded = verifyToken(token) as {userId:string}
-    }catch(err:any){
+    }catch(err:unknown){
+        if (err instanceof Error) {
+            console.error(err.message);
+        }
         return NextResponse.json({ 
             status:401,
             message: "invalid token",
